@@ -1,0 +1,21 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+data = pd.read_csv("C:/Users/User/Downloads/electric_vehicle_charging_station_list.csv")
+
+
+X = data.drop('region', axis=1)
+y = data['region']
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
+
+model=SVC()
+model.fit(X_train,y_train)
+predections=model.predict(X_test)
+print(accuracy_score(y_test,predections))
